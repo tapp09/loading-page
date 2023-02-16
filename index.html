@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>carregamentos CSS</title>
+    <style>
+      body {
+        margin: 2rem;
+        background-color: #212123;
+      }
+      .espaco {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .carregamento {
+        --linhaNormal: rgb(255, 136, 0);
+        --ponto: #ffffff;
+        --duracao: 3s;
+        width: 55px;
+        height: 55px;
+        position: relative;
+      }
+
+      .carregamento:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        background: var(--ponto);
+        top: 43px;
+        left: 25px;
+        transform: translate(-18px, -18px);
+        animation: animacaoPontoQuadrado var(--duracao)
+          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+
+
+      .carregamento svg rect,
+      .carregamento svg polygon,
+      .carregamento svg circle {
+        fill: none;
+        stroke: var(--linhaNormal);
+        stroke-width: 10px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+
+      .carregamento svg circle {
+        stroke-dasharray: 150 50 150 50;
+        stroke-dashoffset: 75;
+        animation: animacaoCirculo var(--duracao)
+          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      }
+
+      @keyframes animacaoPontoQuadrado {
+        25% {
+          transform: translate(0, 0);
+        }
+
+        50% {
+          transform: translate(18px, -18px);
+        }
+
+        75% {
+          transform: translate(0, -36px);
+        }
+
+        100% {
+          transform: translate(-18px, -18px);
+        }
+      }
+
+      @keyframes animacaoCirculo {
+        25% {
+          stroke-dashoffset: 125;
+        }
+
+        50% {
+          stroke-dashoffset: 175;
+        }
+
+        75% {
+          stroke-dashoffset: 225;
+        }
+
+        100% {
+          stroke-dashoffset: 275;
+        }
+      }
+
+      .carregamento {
+        display: inline-block;
+        margin: 0 16px;
+      }
+      .logo_img {
+        margin: 0;
+      }
+      .logo_img img {
+        margin: 0;
+        animation: anima_logo 2s infinite linear;
+      }
+      @keyframes anima_logo
+      {
+          0%   { opacity: 100%; }
+          50% { opacity: 40%;   }
+          100% { opacity: 100%;   }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="espaco">
+      <div class="logo_img">
+        <img src="logo.png" width="550px"/>
+      </div>
+      <div class="carregamento">
+        <svg viewBox="0 0 80 80">
+          <circle id="test" cx="40" cy="40" r="32"></circle>
+        </svg>
+      </div>
+    </div>
+  </body>
+</html>
